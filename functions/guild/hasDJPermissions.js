@@ -7,8 +7,13 @@ module.exports = async function hasDJPermissions(client, member, guild) {
 
     if(serverProfile.settings.djSettings.enabled === false) return true;
 
-    const djRoles = serverProfile.settings.djSettings.roles;
+    if(await member.permissions.has(PermissionsBitField.Flags.Administrator)) return true;
+    if(await member.permissions.has(PermissionsBitField.Flags.ManageGuild)) return true;
 
-    console.log(await  member.roles)
-    console.log(await member.permissions.has(PermissionsBitField.Flags.Administrator))
+    const djRoles = serverProfile.settings.djSettings.roles;
+    for(role of djRoles) {
+         if(await member.roles.cache.has(role)) {
+            return true;
+         }
+    }
 }

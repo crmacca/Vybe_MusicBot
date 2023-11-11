@@ -9,14 +9,13 @@ module.exports = {
         .setName('join')
         .setDescription(`Makes the bot join the voice channel that you're in.`),
     async execute(interaction, client) {
-        const permissions = await hasDJPermissions(client, interaction.member.id, interaction.guild.id);
-        console.log(permissions)
+        const permissions = await hasDJPermissions(client, interaction.member, interaction.guild);
+        if(!permissions) return interaction.reply({embeds: [embeds.error.djMode], ephemeral: true})
 
         const memberVoiceChannel = interaction.member.voice.channel;
         if(!memberVoiceChannel) return interaction.reply({embeds: [embeds.error.notInVoice], ephemeral: true})
 
         const connection = await new_connection(client, interaction, memberVoiceChannel);
-
         if(!connection.success) {
             if(connection.reason === 'API_ERROR') return interaction.reply({embeds: [embeds.error.unknown], ephemeral: true})
             if(connection.reason === 'ALREADY_IN_VOICE') {
@@ -26,8 +25,6 @@ module.exports = {
             }
             return interaction.reply({embeds: [embeds.error.unknown], ephemeral: true})
         }
-
-        console.log(connection)
 
         return interaction.reply({embeds: [embeds.success.joinedVoice]}) 
     }
