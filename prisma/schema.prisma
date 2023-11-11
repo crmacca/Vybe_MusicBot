@@ -6,6 +6,25 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
+}
+
+model Guild {
+  id String @id
+  playerState Json?
+  nowPlaying Json?
+  settings Json?
+  apiKeys Json?
+  isPremium Boolean @default(false)
+  queue Queue?
+}
+
+model Queue {
+  id Int @id @default(autoincrement())
+  songs Json?
+  previouslyPlayed Json?
+  loop Boolean @default(false)
+  guildId String @unique
+  guild Guild? @relation(fields: [guildId], references: [id])
 }

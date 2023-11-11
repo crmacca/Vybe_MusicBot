@@ -1,17 +1,13 @@
 const { SlashCommandBuilder } = require("discord.js");
 const new_connection = require("../../functions/voice/new_connection");
 const embeds = require("../../lang/english/embeds");
-const hasDJPermissions = require("../../functions/guild/hasDJPermissions");
 
 module.exports = {
     category: "public",
     data: new SlashCommandBuilder()
-        .setName('join')
-        .setDescription(`Makes the bot join the voice channel that you're in.`),
+        .setName('drag')
+        .setDescription(`Drags the bot to the voice channel you are in`),
     async execute(interaction, client) {
-        const permissions = await hasDJPermissions(client, interaction.member.id, interaction.guild.id);
-        console.log(permissions)
-
         const memberVoiceChannel = interaction.member.voice.channel;
         if(!memberVoiceChannel) return interaction.reply({embeds: [embeds.error.notInVoice], ephemeral: true})
 
