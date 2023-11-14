@@ -1,7 +1,7 @@
 module.exports = {
     discord: {
-        token: 'MTEzNTgzMjYyMTg0MzIzMDc0MA.GqsDTP.AS9XKGgmxtlAB-OJ5OqwY3-x48ExdhYg4Kk31c',
-        guildID: '1164803809281851462'
+        token: 'MTEzNTgzMjYyMTg0MzIzMDc0MA.GHeNme.mQ8A-w0zTN164h7OfCVRuOmcq2tkOgw7yELlx8',
+        guildID: '1137621836813840435'
     },
     apiKeys: {
         soundCloud: 'tYCjXNdxZd4oVYgrpHjo5kaQmpQnRAvs',

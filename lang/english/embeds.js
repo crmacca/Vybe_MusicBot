@@ -25,7 +25,11 @@ module.exports = {
         alreadyHere: new EmbedBuilder()
         .setTitle(':question: Already in your channel!')
         .setDescription('I am already in your voice channel; did you mean \`/stop\`?')
-        .setColor(colors.error)
+        .setColor(colors.error),
+        songNotFound: new EmbedBuilder()
+        .setTitle(':question: Song not found!')
+        .setDescription('I could not find that song, please try again!')
+        .setColor(colors.error),
     },
     success: {
         joinedVoice: new EmbedBuilder()
